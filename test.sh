@@ -1,5 +1,5 @@
 PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
-
+# the chore
 if [[ $# -eq 0 ]]
     then
 echo "Please come here!"
