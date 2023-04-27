@@ -7,7 +7,7 @@ echo "Please come here!"
      ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements")
      SYMBOL=$($PSQL "SELECT symbol FROM elements")
      NAME=$($PSQL "SELECT name FROM elements")
-
+echo "Hello world"
     if [[ $ATOMIC_NUMBER =~ $1 || $SYMBOL =~ $1 || $NAME =~ $1 ]]
         then
       
