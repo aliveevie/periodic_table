@@ -2,7 +2,7 @@ PSQL="psql --username=freecodecamp --dbname=periodic_table -t --no-align -c"
 
 if [[ $# -eq 0 ]]
     then
-echo "Please provide an element as an argument."
+echo "Please come here!"
     else
      ATOMIC_NUMBER=$($PSQL "SELECT atomic_number FROM elements")
      SYMBOL=$($PSQL "SELECT symbol FROM elements")
