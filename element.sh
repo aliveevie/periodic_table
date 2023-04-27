@@ -18,7 +18,7 @@ echo "Please provide an element as an argument."
                 SYMBOL=$($PSQL "SELECT symbol FROM elements WHERE atomic_number = $1")
                 NAME=$($PSQL "SELECT name FROM elements WHERE atomic_number = $1")
                 MASS_NUM=$($PSQL "SELECT atomic_mass FROM properties WHERE atomic_number = $1")
-                TYPE=$($PSQL "SELECT type FROM properties WHERE atomic_number = $1")
+                TYPE=$($PSQL "SELECT type FROM properties FULL JOIN elements USING(atomic_number) FULL JOIN types USING(type_id) WHERE atomic_number = $1")
                 MPC=$($PSQL "SELECT melting_point_celsius FROM properties WHERE atomic_number = $1")
                 BPC=$($PSQL "SELECT boiling_point_celsius FROM properties WHERE atomic_number = $1")
             elif [[ $SYMBOL =~ $1 ]]
@@ -27,7 +27,7 @@ echo "Please provide an element as an argument."
                 SYMBOL=$($PSQL "SELECT symbol FROM elements WHERE symbol= '$1'")
                 NAME=$($PSQL "SELECT name FROM elements WHERE symbol = '$1'")
                 MASS_NUM=$($PSQL "SELECT atomic_mass FROM properties FULL JOIN elements USING(atomic_number) WHERE symbol = '$1'")
-                TYPE=$($PSQL "SELECT type FROM properties FULL JOIN elements USING(atomic_number) WHERE symbol = '$1'")
+                TYPE=$($PSQL "SELECT type FROM properties FULL JOIN elements USING(atomic_number) FULL JOIN types USING(type_id) WHERE symbol = '$1'")
                 MPC=$($PSQL "SELECT melting_point_celsius FROM properties FULL JOIN elements USING(atomic_number) WHERE symbol = '$1'")
                 BPC=$($PSQL "SELECT boiling_point_celsius FROM properties FULL JOIN elements USING(atomic_number) WHERE symbol = '$1'")
            
@@ -37,7 +37,7 @@ echo "Please provide an element as an argument."
                 SYMBOL=$($PSQL "SELECT symbol FROM elements WHERE name = '$1'")
                 NAME=$($PSQL "SELECT name FROM elements WHERE name = '$1'")
                 MASS_NUM=$($PSQL "SELECT atomic_mass FROM properties FULL JOIN elements USING(atomic_number) WHERE name = '$1'")
-                TYPE=$($PSQL "SELECT type FROM properties FULL JOIN elements USING(atomic_number) WHERE name = '$1'")
+                TYPE=$($PSQL "SELECT type FROM properties FULL JOIN elements USING(atomic_number) FULL JOIN types USING(type_id) WHERE name = '$1'")
                 MPC=$($PSQL "SELECT melting_point_celsius FROM properties FULL JOIN elements USING(atomic_number) WHERE name = '$1'")
                 BPC=$($PSQL "SELECT boiling_point_celsius FROM properties FULL JOIN elements USING(atomic_number) WHERE name = '$1'")
            
